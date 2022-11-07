@@ -11,13 +11,9 @@ find_package(fmt CONFIG REQUIRED)
 set(SRC
     src/binding/Config.cpp
     src/binding/Core.cpp
-    src/binding/DolphinAnalytics.cpp
-    src/binding/GuiApplication.cpp
-    src/binding/GuiHost.cpp
-    src/binding/GuiMainWindow.cpp
-    src/binding/GuiResources.cpp
-    src/binding/GuiSettings.cpp
-    src/binding/GuiTranslation.cpp
+    src/binding/Gui_Application.cpp
+    src/binding/Gui_MainWindow.cpp
+    src/binding/Gui_Settings.cpp
     src/binding/UICommon.cpp
     src/binding.cpp
     src/dol.hpp

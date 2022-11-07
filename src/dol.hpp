@@ -2,13 +2,20 @@
 
 #include <dol/Prelude.h>
 
-extern dolConfig* IConfig;
-extern dolCore* ICore;
-extern dolDolphinAnalytics* IDolphinAnalytics;
-extern dolGuiApplication* IGuiApplication;
-extern dolGuiHost* IGuiHost;
-extern dolGuiMainWindow* IGuiMainWindow;
-extern dolGuiResources* IGuiResources;
-extern dolGuiSettings* IGuiSettings;
-extern dolGuiTranslation* IGuiTranslation;
-extern dolUICommon* IUICommon;
+extern dol_AddressSpace_Accessors* IAddressSpace_Accessors;
+extern dol_Config* IConfig;
+extern dol_Core* ICore;
+extern dol_Core_TitleDatabase_Factory* ICore_TitleDatabase_Factory;
+extern dol_DolphinAnalytics* IDolphinAnalytics;
+extern dol_Gui_Application* IGui_Application;
+extern dol_Gui_Host* IGui_Host;
+extern dol_Gui_MainWindow* IGui_MainWindow;
+extern dol_Gui_Resources* IGui_Resources;
+extern dol_Gui_Settings* IGui_Settings;
+extern dol_Gui_Translation* IGui_Translation;
+extern dol_JitInterface* IJitInterface;
+extern dol_Memory* IMemory;
+extern dol_Pad* IPad;
+extern dol_State* IState;
+extern dol_UICommon* IUICommon;
+extern dol_UICommon_GameFile_Factory* IUICommon_GameFile_Factory;
