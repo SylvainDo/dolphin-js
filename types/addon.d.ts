@@ -420,6 +420,42 @@ export namespace Memory {
     function writePtrBitsBufferU8(address: number, offset: number, data: Uint8Array): void;
 }
 
+export namespace Pad {
+    namespace GC {
+        const enum Buttons {
+            Left = 0x0001,
+            Right = 0x0002,
+            Down = 0x0004,
+            Up = 0x0008,
+            Trigger_Z = 0x0010,
+            Trigger_R = 0x0020,
+            Trigger_L = 0x0040,
+            A = 0x0100,
+            B = 0x0200,
+            X = 0x0400,
+            Y = 0x0800,
+            Start = 0x1000
+        }
+
+        interface Status {
+            readonly button: Buttons;
+            readonly stickX: number;
+            readonly stickY: number;
+            readonly substickX: number;
+            readonly substickY: number;
+            readonly triggerLeft: number;
+            readonly triggerRight: number;
+            readonly analogA: number;
+            readonly analogB: number;
+            readonly isConnected: number;
+        }
+
+        function getStatus(pad_num: number): Status;
+        function rumble(pad_num: number, strength: number): void;
+        function resetRumble(pad_num: number): void;
+    }
+}
+
 export namespace UICommon {
     function formatSize(bytes: number | bigint, decimals: number): string;
 }

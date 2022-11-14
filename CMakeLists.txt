@@ -17,6 +17,7 @@ set(SRC
     src/binding/Gui_Settings.cpp
     src/binding/JitInterface.cpp
     src/binding/Memory.cpp
+    src/binding/Pad.cpp
     src/binding/UICommon.cpp
     src/binding.cpp
     src/dol.hpp
