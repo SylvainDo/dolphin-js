@@ -9,11 +9,14 @@ include(importNode)
 find_package(fmt CONFIG REQUIRED)
 
 set(SRC
+    src/binding/AddressSpace.cpp
     src/binding/Config.cpp
     src/binding/Core.cpp
     src/binding/Gui_Application.cpp
     src/binding/Gui_MainWindow.cpp
     src/binding/Gui_Settings.cpp
+    src/binding/JitInterface.cpp
+    src/binding/Memory.cpp
     src/binding/UICommon.cpp
     src/binding.cpp
     src/dol.hpp

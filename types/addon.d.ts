@@ -300,6 +300,22 @@ export namespace Gui {
     }
 }
 
+export namespace AddressSpace {
+    const enum Type {
+        Effective,
+        Auxiliary,
+        Physical,
+        Mem1,
+        Mem2,
+        Fake
+    }
+
+    function isValidAddress(address_space: Type, address: number): boolean;
+    function get(address_space: Type): ArrayBuffer;
+    function slice(address_space: Type, start: number, end?: number): ArrayBuffer;
+    function search(address_space: Type, haystack_offset: number, needle: Uint8Array, forward?: boolean): number | undefined;
+}
+
 export namespace Config {
     function getInt(prop: string, ...args: any[]): number;
     function getBool(prop: string, ...args: any[]): boolean;
@@ -318,6 +334,90 @@ export namespace Config {
 export namespace Core {
     function getActualEmulationSpeed(): number;
     function displayMessage(message: string, time_in_ms: number): void;
+}
+
+export namespace JitInterface {
+    function clearCache(): void;
+    function invalidateICache(address: number, size: number): void;
+    function invalidateICacheLines(address: number, count: number): void;
+}
+
+export namespace Memory {
+    function memset(address: number, value: number, size: number | bigint): void;
+    function readU8(address: number): number;
+    function readU16LE(address: number): number;
+    function readU32LE(address: number): number;
+    function readU64LE(address: number): bigint;
+    function readF32LE(address: number): number;
+    function readF64LE(address: number): number;
+    function readU16BE(address: number): number;
+    function readU32BE(address: number): number;
+    function readU64BE(address: number): bigint;
+    function readF32BE(address: number): number;
+    function readF64BE(address: number): number;
+    function readS8(address: number): number;
+    function readS16LE(address: number): number;
+    function readS32LE(address: number): number;
+    function readS64LE(address: number): bigint;
+    function readS16BE(address: number): number;
+    function readS32BE(address: number): number;
+    function readS64BE(address: number): bigint;
+    function readBufferU8(address: number, size: number): Uint8Array;
+    function readBitU8(address: number, bit_offset: number): boolean;
+    function readBitsU8(address: number): Uint8Array;
+    function readBitsBufferU8(address: number, size: number): Uint8Array;
+    function writeU8(address: number, value: number): void;
+    function writeU16LE(address: number, value: number): void;
+    function writeU32LE(address: number, value: number): void;
+    function writeU64LE(address: number, value: number | bigint): void;
+    function writeF32LE(address: number, value: number): void;
+    function writeF64LE(address: number, value: number): void;
+    function writeU16BE(address: number, value: number): void;
+    function writeU32BE(address: number, value: number): void;
+    function writeU64BE(address: number, value: number | bigint): void;
+    function writeF32BE(address: number, value: number): void;
+    function writeF64BE(address: number, value: number): void;
+    function writeBufferU8(address: number, data: Uint8Array): void;
+    function writeBitU8(address: number, bit_offset: number, set: number | boolean): void;
+    function writeBitsU8(address: number, data: Uint8Array): void;
+    function writeBitsBufferU8(address: number, data: Uint8Array): void;
+    function readPtrU8(address: number, offset: number): number;
+    function readPtrU16LE(address: number, offset: number): number;
+    function readPtrU32LE(address: number, offset: number): number;
+    function readPtrU64LE(address: number, offset: number): bigint;
+    function readPtrF32LE(address: number, offset: number): number;
+    function readPtrF64LE(address: number, offset: number): number;
+    function readPtrU16BE(address: number, offset: number): number;
+    function readPtrU32BE(address: number, offset: number): number;
+    function readPtrU64BE(address: number, offset: number): bigint;
+    function readPtrF32BE(address: number, offset: number): number;
+    function readPtrF64BE(address: number, offset: number): number;
+    function readPtrS8(address: number, offset: number): number;
+    function readPtrS16LE(address: number, offset: number): number;
+    function readPtrS32LE(address: number, offset: number): number;
+    function readPtrS64LE(address: number, offset: number): bigint;
+    function readPtrS16BE(address: number, offset: number): number;
+    function readPtrS32BE(address: number, offset: number): number;
+    function readPtrS64BE(address: number, offset: number): bigint;
+    function readPtrBufferU8(address: number, offset: number, size: number): Uint8Array;
+    function readPtrBitU8(address: number, offset: number, bit_offset: number): boolean;
+    function readPtrBitsU8(address: number, offset: number): Uint8Array;
+    function readPtrBitsBufferU8(address: number, offset: number, size: number): Uint8Array;
+    function writePtrU8(address: number, offset: number, value: number): void;
+    function writePtrU16LE(address: number, offset: number, value: number): void;
+    function writePtrU32LE(address: number, offset: number, value: number): void;
+    function writePtrU64LE(address: number, offset: number, value: number | bigint): void;
+    function writePtrF32LE(address: number, offset: number, value: number): void;
+    function writePtrF64LE(address: number, offset: number, value: number): void;
+    function writePtrU16BE(address: number, offset: number, value: number): void;
+    function writePtrU32BE(address: number, offset: number, value: number): void;
+    function writePtrU64BE(address: number, offset: number, value: number | bigint): void;
+    function writePtrF32BE(address: number, offset: number, value: number): void;
+    function writePtrF64BE(address: number, offset: number, value: number): void;
+    function writePtrBufferU8(address: number, offset: number, data: Uint8Array): void;
+    function writePtrBitU8(address: number, offset: number, bit_offset: number, set: number | boolean): void;
+    function writePtrBitsU8(address: number, offset: number, data: Uint8Array): void;
+    function writePtrBitsBufferU8(address: number, offset: number, data: Uint8Array): void;
 }
 
 export namespace UICommon {
