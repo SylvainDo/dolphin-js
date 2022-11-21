@@ -5,7 +5,6 @@
 extern dol_AddressSpace_Accessors* IAddressSpace_Accessors;
 extern dol_Config* IConfig;
 extern dol_Core* ICore;
-extern dol_Core_TitleDatabase_Factory* ICore_TitleDatabase_Factory;
 extern dol_DolphinAnalytics* IDolphinAnalytics;
 extern dol_Gui_Application* IGui_Application;
 extern dol_Gui_Host* IGui_Host;

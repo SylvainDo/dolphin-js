@@ -13,7 +13,6 @@
 dol_AddressSpace_Accessors* IAddressSpace_Accessors;
 dol_Config* IConfig;
 dol_Core* ICore;
-dol_Core_TitleDatabase_Factory* ICore_TitleDatabase_Factory;
 dol_DolphinAnalytics* IDolphinAnalytics;
 dol_Gui_Application* IGui_Application;
 dol_Gui_Host* IGui_Host;
@@ -58,7 +57,6 @@ static struct Loader {
         LoadInterface(AddressSpace_Accessors)
         LoadInterface(Config)
         LoadInterface(Core)
-        LoadInterface(Core_TitleDatabase_Factory)
         LoadInterface(DolphinAnalytics)
         LoadInterface(Gui_Application)
         LoadInterface(Gui_Host)
@@ -79,7 +77,6 @@ static struct Loader {
         free(IAddressSpace_Accessors);
         free(IConfig);
         free(ICore);
-        free(ICore_TitleDatabase_Factory);
         free(IDolphinAnalytics);
         free(IGui_Application);
         free(IGui_Host);

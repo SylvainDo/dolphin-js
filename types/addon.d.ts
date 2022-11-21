@@ -457,5 +457,48 @@ export namespace Pad {
 }
 
 export namespace UICommon {
+    interface GameBanner {
+        readonly buffer: Uint8Array;
+        readonly width: number;
+        readonly height: number;
+    }
+
+    interface GameFile {
+        readonly isValid: boolean;
+        readonly filePath: string;
+        readonly name: string;
+        readonly maker: string;
+        readonly description: string;
+        readonly languages: Enums.DiscIO.Language;
+        readonly internalName: string;
+        readonly gameID: string;
+        readonly gameTDBID: string;
+        readonly titleID: bigint;
+        readonly makerID: string;
+        readonly revision: number;
+        readonly discNumber: number;
+        readonly syncHash: Uint8Array;
+        readonly wiiFSPath: string;
+        readonly region: Enums.DiscIO.Region;
+        readonly country: Enums.DiscIO.Country;
+        readonly platform: Enums.DiscIO.Platform;
+        readonly blobType: Enums.DiscIO.BlobType;
+        readonly blockSize: bigint;
+        readonly compressionMethod: string;
+        readonly fileFormatName: string;
+        readonly apploaderDate: string;
+        readonly fileSize: bigint;
+        readonly volumeSize: bigint;
+        readonly volumeSizeType: Enums.DiscIO.DataSizeType;
+        readonly isDatelDisc: boolean;
+        readonly isNKit: boolean;
+        readonly isModDescriptor: boolean;
+        readonly bannerImage: GameBanner;
+    }
+
+    var GameFile: {
+        new(path: string): GameFile;
+    };
+
     function formatSize(bytes: number | bigint, decimals: number): string;
 }
