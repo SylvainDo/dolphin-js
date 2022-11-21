@@ -85,7 +85,7 @@ Napi::Object Memory_exports(Napi::Env env, Napi::Object exports) {
         return fromU32(info.Env(), bswap32(IMemory->readU32(asU32(info[0]))));
     }));
     exports.Set("readU64LE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
-        return fromU64(info.Env(), bswap64(IMemory->readU64(asU32(info[0]))));
+        return fromU64_n(info.Env(), bswap64(IMemory->readU64(asU32(info[0]))));
     }));
     exports.Set("readF32LE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return fromF32(info.Env(), std::bit_cast<float>(bswap32(IMemory->readU32(asU32(info[0])))));
@@ -100,7 +100,7 @@ Napi::Object Memory_exports(Napi::Env env, Napi::Object exports) {
         return fromU32(info.Env(), IMemory->readU32(asU32(info[0])));
     }));
     exports.Set("readU64BE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
-        return fromU64(info.Env(), IMemory->readU64(asU32(info[0])));
+        return fromU64_n(info.Env(), IMemory->readU64(asU32(info[0])));
     }));
     exports.Set("readF32BE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return fromF32(info.Env(), std::bit_cast<float>(IMemory->readU32(asU32(info[0]))));
@@ -118,7 +118,7 @@ Napi::Object Memory_exports(Napi::Env env, Napi::Object exports) {
         return fromS32(info.Env(), static_cast<int32_t>(bswap32(IMemory->readU32(asU32(info[0])))));
     }));
     exports.Set("readS64LE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
-        return fromS64(info.Env(), static_cast<int64_t>(bswap64(IMemory->readU64(asU32(info[0])))));
+        return fromS64_n(info.Env(), static_cast<int64_t>(bswap64(IMemory->readU64(asU32(info[0])))));
     }));
     exports.Set("readS16BE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return fromS16(info.Env(), static_cast<int16_t>(IMemory->readU16(asU32(info[0]))));
@@ -127,7 +127,7 @@ Napi::Object Memory_exports(Napi::Env env, Napi::Object exports) {
         return fromS32(info.Env(), static_cast<int32_t>(IMemory->readU32(asU32(info[0]))));
     }));
     exports.Set("readS64BE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
-        return fromS64(info.Env(), static_cast<int64_t>(IMemory->readU64(asU32(info[0]))));
+        return fromS64_n(info.Env(), static_cast<int64_t>(IMemory->readU64(asU32(info[0]))));
     }));
     exports.Set("readBufferU8", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return readBufferU8(info.Env(), asU32(info[0]), asU32(info[1]));
@@ -207,7 +207,7 @@ Napi::Object Memory_exports(Napi::Env env, Napi::Object exports) {
         return fromU32(info.Env(), bswap32(IMemory->readU32(readPtrAddOffset(info))));
     }));
     exports.Set("readPtrU64LE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
-        return fromU64(info.Env(), bswap64(IMemory->readU64(readPtrAddOffset(info))));
+        return fromU64_n(info.Env(), bswap64(IMemory->readU64(readPtrAddOffset(info))));
     }));
     exports.Set("readPtrF32LE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return fromF32(info.Env(), std::bit_cast<float>(bswap32(IMemory->readU32(readPtrAddOffset(info)))));
@@ -222,7 +222,7 @@ Napi::Object Memory_exports(Napi::Env env, Napi::Object exports) {
         return fromU32(info.Env(), IMemory->readU32(readPtrAddOffset(info)));
     }));
     exports.Set("readPtrU64BE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
-        return fromU64(info.Env(), IMemory->readU64(readPtrAddOffset(info)));
+        return fromU64_n(info.Env(), IMemory->readU64(readPtrAddOffset(info)));
     }));
     exports.Set("readPtrF32BE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return fromF32(info.Env(), std::bit_cast<float>(IMemory->readU32(readPtrAddOffset(info))));
@@ -240,7 +240,7 @@ Napi::Object Memory_exports(Napi::Env env, Napi::Object exports) {
         return fromS32(info.Env(), static_cast<int32_t>(bswap32(IMemory->readU32(readPtrAddOffset(info)))));
     }));
     exports.Set("readPtrS64LE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
-        return fromS64(info.Env(), static_cast<int64_t>(bswap64(IMemory->readU64(readPtrAddOffset(info)))));
+        return fromS64_n(info.Env(), static_cast<int64_t>(bswap64(IMemory->readU64(readPtrAddOffset(info)))));
     }));
     exports.Set("readPtrS16BE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return fromS16(info.Env(), static_cast<int16_t>(IMemory->readU16(readPtrAddOffset(info))));
@@ -249,7 +249,7 @@ Napi::Object Memory_exports(Napi::Env env, Napi::Object exports) {
         return fromS32(info.Env(), static_cast<int32_t>(IMemory->readU32(readPtrAddOffset(info))));
     }));
     exports.Set("readPtrS64BE", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
-        return fromS64(info.Env(), static_cast<int64_t>(IMemory->readU64(readPtrAddOffset(info))));
+        return fromS64_n(info.Env(), static_cast<int64_t>(IMemory->readU64(readPtrAddOffset(info))));
     }));
     exports.Set("readPtrBufferU8", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return readBufferU8(info.Env(), readPtrAddOffset(info), asU32(info[2]));
