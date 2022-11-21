@@ -502,3 +502,13 @@ export namespace UICommon {
 
     function formatSize(bytes: number | bigint, decimals: number): string;
 }
+
+export namespace Util {
+    interface VerifyResult {
+        readonly sha1: Uint8Array;
+        readonly goodDump: boolean;
+    }
+
+    function verifyDisc(game: UICommon.GameFile): [boolean, VerifyResult];
+    function extractDisc(game: UICommon.GameFile, path: string): boolean;
+}

@@ -18,3 +18,4 @@ extern dol_Pad* IPad;
 extern dol_State* IState;
 extern dol_UICommon* IUICommon;
 extern dol_UICommon_GameFile_Factory* IUICommon_GameFile_Factory;
+extern dol_Util* IUtil;

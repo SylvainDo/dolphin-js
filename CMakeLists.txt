@@ -21,6 +21,7 @@ set(SRC
     src/binding/UICommon.cpp
     src/binding/UICommon_GameFile.cpp
     src/binding/UICommon_GameFile.hpp
+    src/binding/Util.cpp
     src/binding.cpp
     src/dol.hpp
     src/dolLoader.cpp

@@ -26,6 +26,7 @@ dol_Pad* IPad;
 dol_State* IState;
 dol_UICommon* IUICommon;
 dol_UICommon_GameFile_Factory* IUICommon_GameFile_Factory;
+dol_Util* IUtil;
 
 static struct Loader {
     HMODULE _lib;
@@ -70,6 +71,7 @@ static struct Loader {
         LoadInterface(State)
         LoadInterface(UICommon)
         LoadInterface(UICommon_GameFile_Factory)
+        LoadInterface(Util)
 #undef LoadInterface
     }
 
@@ -90,6 +92,7 @@ static struct Loader {
         free(IState);
         free(IUICommon);
         free(IUICommon_GameFile_Factory);
+        free(IUtil);
 
         FreeLibrary(_lib);
     }

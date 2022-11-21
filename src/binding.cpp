@@ -10,6 +10,7 @@ Napi::Object JitInterface_exports(Napi::Env env, Napi::Object exports);
 Napi::Object Memory_exports(Napi::Env env, Napi::Object exports);
 Napi::Object Pad_exports(Napi::Env env, Napi::Object exports);
 Napi::Object UICommon_exports(Napi::Env env, Napi::Object exports);
+Napi::Object Util_exports(Napi::Env env, Napi::Object exports);
 
 Napi::Object binding_exports(Napi::Env env, Napi::Object exports) {
     auto guiNs = Napi::Object::New(env);
@@ -24,5 +25,6 @@ Napi::Object binding_exports(Napi::Env env, Napi::Object exports) {
     exports.Set("Memory", Memory_exports(env, Napi::Object::New(env)));
     exports.Set("Pad", Pad_exports(env, Napi::Object::New(env)));
     exports.Set("UICommon", UICommon_exports(env, Napi::Object::New(env)));
+    exports.Set("Util", Util_exports(env, Napi::Object::New(env)));
     return exports;
 }
