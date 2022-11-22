@@ -43,4 +43,5 @@ private:
     Napi::Value _isNKit(const Napi::CallbackInfo& info);
     Napi::Value _isModDescriptor(const Napi::CallbackInfo& info);
     Napi::Value _getBannerImage(const Napi::CallbackInfo& info);
+    Napi::Value _getLocalIniPath(const Napi::CallbackInfo& info);
 };

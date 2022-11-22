@@ -494,6 +494,7 @@ export namespace UICommon {
         readonly isNKit: boolean;
         readonly isModDescriptor: boolean;
         readonly bannerImage: GameBanner;
+        readonly localIniPath: string;
     }
 
     var GameFile: {
@@ -504,6 +505,10 @@ export namespace UICommon {
 }
 
 export namespace Util {
+    function enablePatch(game: UICommon.GameFile, name: string): boolean;
+    function enableARCode(game: UICommon.GameFile, name: string): boolean;
+    function enableGeckoCode(game: UICommon.GameFile, name: string): boolean;
+
     interface VerifyResult {
         readonly sha1: Uint8Array;
         readonly goodDump: boolean;

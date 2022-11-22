@@ -38,7 +38,8 @@ Napi::Object UICommon_GameFile::initialize(Napi::Env env, Napi::Object exports) 
             InstanceAccessor<&UICommon_GameFile::_isDatelDisc>("isDatelDisc"),
             InstanceAccessor<&UICommon_GameFile::_isNKit>("isNKit"),
             InstanceAccessor<&UICommon_GameFile::_isModDescriptor>("isModDescriptor"),
-            InstanceAccessor<&UICommon_GameFile::_getBannerImage>("bannerImage")
+            InstanceAccessor<&UICommon_GameFile::_getBannerImage>("bannerImage"),
+            InstanceAccessor<&UICommon_GameFile::_getLocalIniPath>("localIniPath")
     });
     constructor = Napi::Persistent(clazz);
     constructor.SuppressDestruct();
@@ -193,4 +194,8 @@ Napi::Value UICommon_GameFile::_getBannerImage(const Napi::CallbackInfo& info) {
     a.Set("width", fromU32(info.Env(), banner.width));
     a.Set("height", fromU32(info.Env(), banner.height));
     return a;
+}
+
+Napi::Value UICommon_GameFile::_getLocalIniPath(const Napi::CallbackInfo& info) {
+    return fromStrUtf8(info.Env(), util::copyString(iface->getLocalIniPath(iface)));
 }
