@@ -219,6 +219,7 @@ export namespace Gui {
         function show(): void;
         function startGame(path: string): void;
         function setResetCallback(callback: () => void): void;
+        function setEmulationStateChangedCallback(callback: (state: Core.State) => void): void;
     }
 
     namespace Settings {
@@ -333,6 +334,14 @@ export namespace Config {
 }
 
 export namespace Core {
+    const enum State {
+        Uninitialized,
+        Paused,
+        Running,
+        Stopping,
+        Starting
+    }
+
     function getActualEmulationSpeed(): number;
     function displayMessage(message: string, time_in_ms: number): void;
 }
