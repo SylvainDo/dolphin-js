@@ -218,6 +218,7 @@ export namespace Gui {
     namespace MainWindow {
         function show(): void;
         function startGame(path: string): void;
+        function setResetCallback(callback: () => void): void;
     }
 
     namespace Settings {
