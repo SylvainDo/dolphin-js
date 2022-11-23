@@ -17,7 +17,8 @@ export namespace Dolphin {
     function startup(info: StartupInfo, preconfigure?: () => void): void;
     function shutdown(): void;
     function processOne(): void;
-    function advanceOne(): void;
+    function enableFrameHandler(enabled: boolean): void;
+    function handleFrame(callback?: () => void): boolean;
 }
 
 export namespace Enums {

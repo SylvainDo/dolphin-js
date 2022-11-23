@@ -76,11 +76,17 @@ static Napi::Object initModule(Napi::Env env, Napi::Object exports) {
 
         return info.Env().Undefined();
     }));
-    dolphinNs.Set("advanceOne", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
-        if (ICore->isRunningAndStarted())
-            ICore->doFrameStep();
-
+    dolphinNs.Set("enableFrameHandler", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
+        ICore->setFrameHandlerEnabled(asBool(info[0]));
         return info.Env().Undefined();
+    }));
+    dolphinNs.Set("handleFrame", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
+        if (ICore->getFrameHandlerToken()) {
+            valueAsFunction(info[0]).Call({});
+            ICore->setFrameHandlerToken(false);
+            return fromBool(info.Env(), true);
+        }
+        return fromBool(info.Env(), false);
     }));
     exports.Set("Dolphin", dolphinNs);
     binding_exports(env, exports);
