@@ -14,7 +14,7 @@ export namespace Dolphin {
     }
 
     function loadLibrary(info: LibraryInfo): void;
-    function startup(info: StartupInfo): void;
+    function startup(info: StartupInfo, preconfigure?: () => void): void;
     function shutdown(): void;
     function processOne(): void;
     function advanceOne(): void;

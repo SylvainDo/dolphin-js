@@ -45,6 +45,10 @@ static Napi::Object initModule(Napi::Env env, Napi::Object exports) {
         IUICommon->setUserDirectory(asStrUtf8Or(_info.Get("userDirectoryPath"), "").c_str());
         IUICommon->createDirectories();
         IUICommon->init();
+
+        if (!info[1].IsUndefined())
+            valueAsFunction(info[1]).Call({});
+
         IGui_Resources->init();
         IGui_Settings->setBatchModeEnabled(false);
         IGui_Translation->initialize();
