@@ -1,12 +1,10 @@
 /.idea
 /.vs
-/.vscode/*
-!/.vscode/launch.json
-!/.vscode/settings.json
-!/.vscode/settings (Linux).json
+/.vscode
 /bin/*
 !/bin/addon.js
 /build
+/dist
 /out
-/test/bin
+/test
 node_modules
