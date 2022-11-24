@@ -315,7 +315,7 @@ export namespace AddressSpace {
 
     function isValidAddress(address_space: Type, address: number): boolean;
     function get(address_space: Type): ArrayBuffer;
-    function slice(address_space: Type, start: number, end?: number): ArrayBuffer;
+    function slice(address_space: Type, start: number, length?: number): ArrayBuffer;
     function search(address_space: Type, haystack_offset: number, needle: Uint8Array, forward?: boolean): number | undefined;
 }
 
@@ -361,7 +361,7 @@ export namespace JitInterface {
 }
 
 export namespace Memory {
-    function memset(address: number, value: number, size: number | bigint): void;
+    function memset(address: number, value: number, size: number): void;
     function readU8(address: number): number;
     function readU16LE(address: number): number;
     function readU32LE(address: number): number;

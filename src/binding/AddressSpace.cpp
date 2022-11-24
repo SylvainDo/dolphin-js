@@ -16,9 +16,9 @@ Napi::Object AddressSpace_exports(Napi::Env env, Napi::Object exports) {
     }));
     exports.Set("slice", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         const auto address_space = static_cast<dol_AddressSpace_Type>(asS32(info[0]));
-        const auto begin = IAddressSpace_Accessors->begin(address_space) + asS32(info[1]);
+        const auto begin = IAddressSpace_Accessors->begin(address_space) + asU32(info[1]);
         const auto end = info[2].IsUndefined() ? IAddressSpace_Accessors->end(address_space) :
-                         IAddressSpace_Accessors->begin(address_space) + asS32(info[2]);
+                         begin + asU32(info[2]);
         return Napi::ArrayBuffer::New(info.Env(), const_cast<uint8_t*>(begin), end - begin);
     }));
     exports.Set("search", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
