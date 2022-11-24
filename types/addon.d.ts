@@ -21,196 +21,6 @@ export namespace Dolphin {
     function handleFrame(callback?: () => void): boolean;
 }
 
-export namespace Enums {
-    const enum AspectMode {
-        Auto,
-        AnalogWide,
-        Analog,
-        Stretch
-    }
-
-    namespace AudioCommon {
-        const enum DPL2Quality {
-            Lowest,
-            Low,
-            High,
-            Highest
-        }
-    }
-
-    namespace Config {
-        const enum ShowCursor {
-            Never,
-            Constantly,
-            OnMovement
-        }
-    }
-
-    namespace DiscIO {
-        const enum BlobType {
-            PLAIN,
-            DRIVE,
-            DIRECTORY,
-            GCZ,
-            CISO,
-            WBFS,
-            TGC,
-            WIA,
-            RVZ,
-            MOD_DESCRIPTOR,
-            NFS
-        }
-
-        const enum Country {
-            Europe,
-            Japan,
-            USA,
-            Australia,
-            France,
-            Germany,
-            Italy,
-            Korea,
-            Netherlands,
-            Russia,
-            Spain,
-            Taiwan,
-            World,
-            Unknown
-        }
-
-        const enum DataSizeType {
-            Accurate,
-            LowerBound,
-            UpperBound
-        }
-
-        const enum Language {
-            Japanese,
-            English,
-            German,
-            French,
-            Spanish,
-            Italian,
-            Dutch,
-            SimplifiedChinese,
-            TraditionalChinese,
-            Korean,
-            Unknown
-        }
-
-        const enum Platform {
-            GameCubeDisc,
-            WiiDisc,
-            WiiWAD,
-            ELFOrDOL
-        }
-
-        const enum Region {
-            NTSC_J,
-            NTSC_U,
-            PAL,
-            Unknown,
-            NTSC_K
-        }
-    }
-
-    namespace ExpansionInterface {
-        const enum EXIDeviceType {
-            Dummy,
-            MemoryCard,
-            MaskROM,
-            AD16,
-            Microphone,
-            Ethernet,
-            AMBaseboard,
-            Gecko,
-            MemoryCardFolder,
-            AGP,
-            EthernetXLink,
-            EthernetTapServer,
-            EthernetBuiltIn,
-            None = 0xff
-        }
-
-        const enum Slot {
-            A,
-            B,
-            SP1
-        }
-    }
-
-    namespace FreeLook {
-        const enum ControlType {
-            SixAxis,
-            FPS,
-            Orbital
-        }
-    }
-
-    namespace HSP {
-        const enum HSPDeviceType {
-            None,
-            ARAMExpansion
-        }
-    }
-
-    namespace PowerPC {
-        const enum CPUCore {
-            Interpreter,
-            JIT64,
-            JITARM64 = 4,
-            CachedInterpreter
-        }
-    }
-
-    namespace SerialInterface {
-        const enum SIDevices {
-            None,
-            N64Mic,
-            N64Keyboard,
-            N64Mouse,
-            N64Controller,
-            GC_GBA,
-            GCController,
-            GCKeyboard,
-            GCSteering,
-            DanceMat,
-            GCTaruKonga,
-            AMBaseboard,
-            WiiUAdapter,
-            GC_GBA_Emulated
-        }
-    }
-
-    const enum ShaderCompilationMode {
-        Synchronous,
-        SynchronousUberShaders,
-        AsynchronousUberShaders,
-        AsynchronousSkipRendering
-    }
-
-    const enum StereoMode {
-        Off,
-        SBS,
-        TAB,
-        Anaglyph,
-        QuadBuffer,
-        Passive
-    }
-
-    const enum TriState {
-        Off,
-        On,
-        Auto
-    }
-
-    const enum WiimoteSource {
-        None,
-        Emulated,
-        Real
-    }
-}
-
 export namespace Gui {
     namespace Application {
         function hasExited(): boolean;
@@ -545,4 +355,194 @@ export namespace Util {
 
     function verifyDisc(game: UICommon.GameFile): [boolean, VerifyResult];
     function extractDisc(game: UICommon.GameFile, path: string): boolean;
+}
+
+export namespace Enums {
+    const enum AspectMode {
+        Auto,
+        AnalogWide,
+        Analog,
+        Stretch
+    }
+
+    namespace AudioCommon {
+        const enum DPL2Quality {
+            Lowest,
+            Low,
+            High,
+            Highest
+        }
+    }
+
+    namespace Config {
+        const enum ShowCursor {
+            Never,
+            Constantly,
+            OnMovement
+        }
+    }
+
+    namespace DiscIO {
+        const enum BlobType {
+            PLAIN,
+            DRIVE,
+            DIRECTORY,
+            GCZ,
+            CISO,
+            WBFS,
+            TGC,
+            WIA,
+            RVZ,
+            MOD_DESCRIPTOR,
+            NFS
+        }
+
+        const enum Country {
+            Europe,
+            Japan,
+            USA,
+            Australia,
+            France,
+            Germany,
+            Italy,
+            Korea,
+            Netherlands,
+            Russia,
+            Spain,
+            Taiwan,
+            World,
+            Unknown
+        }
+
+        const enum DataSizeType {
+            Accurate,
+            LowerBound,
+            UpperBound
+        }
+
+        const enum Language {
+            Japanese,
+            English,
+            German,
+            French,
+            Spanish,
+            Italian,
+            Dutch,
+            SimplifiedChinese,
+            TraditionalChinese,
+            Korean,
+            Unknown
+        }
+
+        const enum Platform {
+            GameCubeDisc,
+            WiiDisc,
+            WiiWAD,
+            ELFOrDOL
+        }
+
+        const enum Region {
+            NTSC_J,
+            NTSC_U,
+            PAL,
+            Unknown,
+            NTSC_K
+        }
+    }
+
+    namespace ExpansionInterface {
+        const enum EXIDeviceType {
+            Dummy,
+            MemoryCard,
+            MaskROM,
+            AD16,
+            Microphone,
+            Ethernet,
+            AMBaseboard,
+            Gecko,
+            MemoryCardFolder,
+            AGP,
+            EthernetXLink,
+            EthernetTapServer,
+            EthernetBuiltIn,
+            None = 0xff
+        }
+
+        const enum Slot {
+            A,
+            B,
+            SP1
+        }
+    }
+
+    namespace FreeLook {
+        const enum ControlType {
+            SixAxis,
+            FPS,
+            Orbital
+        }
+    }
+
+    namespace HSP {
+        const enum HSPDeviceType {
+            None,
+            ARAMExpansion
+        }
+    }
+
+    namespace PowerPC {
+        const enum CPUCore {
+            Interpreter,
+            JIT64,
+            JITARM64 = 4,
+            CachedInterpreter
+        }
+    }
+
+    namespace SerialInterface {
+        const enum SIDevices {
+            None,
+            N64Mic,
+            N64Keyboard,
+            N64Mouse,
+            N64Controller,
+            GC_GBA,
+            GCController,
+            GCKeyboard,
+            GCSteering,
+            DanceMat,
+            GCTaruKonga,
+            AMBaseboard,
+            WiiUAdapter,
+            GC_GBA_Emulated
+        }
+    }
+
+    const enum ShaderCompilationMode {
+        Synchronous,
+        SynchronousUberShaders,
+        AsynchronousUberShaders,
+        AsynchronousSkipRendering
+    }
+
+    const enum StereoMode {
+        Off,
+        SBS,
+        TAB,
+        Anaglyph,
+        QuadBuffer,
+        Passive
+    }
+
+    const enum TriState {
+        Off,
+        On,
+        Auto
+    }
+
+    const enum WiimoteSource {
+        None,
+        Emulated,
+        Real
+    }
 }
