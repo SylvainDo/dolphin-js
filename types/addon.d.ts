@@ -344,7 +344,13 @@ export namespace Core {
     }
 
     function getActualEmulationSpeed(): number;
+    function isRunning(): boolean;
+    function isRunningAndStarted(): boolean;
+    function getState(): State;
+    function setState(state: State): void;
+    function saveScreenshot(name?: string): void;
     function displayMessage(message: string, time_in_ms: number): void;
+    function doFrameStep(): void;
 }
 
 export namespace JitInterface {
