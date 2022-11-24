@@ -18,6 +18,7 @@ set(SRC
     src/binding/JitInterface.cpp
     src/binding/Memory.cpp
     src/binding/Pad.cpp
+    src/binding/State.cpp
     src/binding/UICommon.cpp
     src/binding/UICommon_GameFile.cpp
     src/binding/UICommon_GameFile.hpp

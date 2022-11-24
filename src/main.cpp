@@ -58,6 +58,7 @@ static Napi::Object initModule(Napi::Env env, Napi::Object exports) {
         IConfig->setInfo1(IConfig->findInfo1("MAIN_ANALYTICS_PERMISSION_ASKED"), true, true);
         IGui_Settings->setAnalyticsEnabled(false);
         IDolphinAnalytics->reloadConfig();
+        IState->enableCompression(true);
 
         return info.Env().Undefined();
     }));

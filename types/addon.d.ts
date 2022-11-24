@@ -473,6 +473,15 @@ export namespace Pad {
     }
 }
 
+export namespace State {
+    function save(slot: number): void;
+    function load(slot: number): void;
+    function saveAs(filename: string): void;
+    function loadAs(filename: string): void;
+    function saveToBuffer(): Uint8Array;
+    function loadFromBuffer(buffer: Uint8Array): void;
+}
+
 export namespace UICommon {
     interface GameBanner {
         readonly buffer: Uint8Array;
