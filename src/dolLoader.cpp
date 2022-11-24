@@ -3,9 +3,8 @@
 
 #include <cstdlib>
 #include <filesystem>
+#include <sstream>
 #include <stdexcept>
-
-#include <fmt/format.h>
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -32,13 +31,19 @@ static struct Loader {
     HMODULE _lib;
 
     void load(const std::string& libraryPath, const std::string& libraryName) {
-        if (!SetDllDirectory(util::s2ws(libraryPath).c_str()))
-            throw std::runtime_error(fmt::format("couldn't set dll directory ({0:#x})", GetLastError()));
+        if (!SetDllDirectory(util::s2ws(libraryPath).c_str())) {
+            std::ostringstream oss;
+            oss << "couldn't set dll directory (0x" << std::hex << GetLastError() << ')';
+            throw std::runtime_error(oss.str());
+        }
 
         _lib = LoadLibrary((std::filesystem::path(util::s2ws(libraryPath)) /
                             std::filesystem::path(util::s2ws(libraryName))).wstring().c_str());
-        if (!_lib)
-            throw std::runtime_error(fmt::format("couldn't load library ({0:#x})", GetLastError()));
+        if (!_lib) {
+            std::ostringstream oss;
+            oss << "couldn't load library (0x" << std::hex << GetLastError() << ')';
+            throw std::runtime_error(oss.str());
+        }
 
         const auto _setMalloc = (dol_setMalloc_t)GetProcAddress(_lib, "dol_setMalloc");
         const auto _setCalloc = (dol_setCalloc_t)GetProcAddress(_lib, "dol_setCalloc");

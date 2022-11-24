@@ -3,7 +3,7 @@
 #include "../valueConverter.hpp"
 using namespace valueConverter;
 
-#include <fmt/format.h>
+#include <sstream>
 
 static void* findProp(std::string_view expr, bool* isBaseLayer, const Napi::CallbackInfo& args, int* argsOffset) {
     *isBaseLayer = expr[0] == '-';
@@ -76,8 +76,11 @@ Napi::Object Config_exports(Napi::Env env, Napi::Object exports) {
         int argsOffset; \
         const auto propName = asStrUtf8(info[0]); \
         const auto prop = findProp(propName, &isBaseLayer, info, &argsOffset); \
-        if (!prop) \
-            throw Napi::Error::New(info.Env(), fmt::format("invalid property: '{}'", propName)); \
+        if (!prop) { \
+            std::ostringstream oss; \
+            oss << "invalid property: '" << propName << '\''; \
+            throw Napi::Error::New(info.Env(), oss.str()); \
+        } \
         return from##_2(info.Env(), IConfig->getInfo##_3(prop, isBaseLayer)); \
     }));
     getter(Int, S32, 1)
@@ -93,8 +96,11 @@ Napi::Object Config_exports(Napi::Env env, Napi::Object exports) {
         int argsOffset; \
         const auto propName = asStrUtf8(info[0]); \
         const auto prop = findProp(propName, &isBaseLayer, info, &argsOffset); \
-        if (!prop) \
-            throw Napi::Error::New(info.Env(), fmt::format("invalid property: '{}'", propName)); \
+        if (!prop) { \
+            std::ostringstream oss; \
+            oss << "invalid property: '" << propName << '\''; \
+            throw Napi::Error::New(info.Env(), oss.str()); \
+        } \
         IConfig->setInfo##_3(prop, as##_2(info[argsOffset + 1]), isBaseLayer); \
         return info.Env().Undefined(); \
     }));
@@ -110,8 +116,11 @@ Napi::Object Config_exports(Napi::Env env, Napi::Object exports) {
         int argsOffset;
         const auto propName = asStrUtf8(info[0]);
         const auto prop = findProp(propName, &isBaseLayer, info, &argsOffset);
-        if (!prop)
-            throw Napi::Error::New(info.Env(), fmt::format("invalid property: '{}'", propName));
+        if (!prop) {
+            std::ostringstream oss;
+            oss << "invalid property: '" << propName << '\'';
+            throw Napi::Error::New(info.Env(), oss.str());
+        }
         return fromStrUtf8(info.Env(), util::copyString(IConfig->getInfo2(prop, isBaseLayer)));
     }));
     exports.Set("setString", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
@@ -119,8 +128,11 @@ Napi::Object Config_exports(Napi::Env env, Napi::Object exports) {
         int argsOffset;
         const auto propName = asStrUtf8(info[0]);
         const auto prop = findProp(propName, &isBaseLayer, info, &argsOffset);
-        if (!prop)
-            throw Napi::Error::New(info.Env(), fmt::format("invalid property: '{}'", propName));
+        if (!prop) {
+            std::ostringstream oss;
+            oss << "invalid property: '" << propName << '\'';
+            throw Napi::Error::New(info.Env(), oss.str());
+        }
         IConfig->setInfo2(prop, asStrUtf8(info[argsOffset + 1]).c_str(), isBaseLayer);
         return info.Env().Undefined();
     }));
