@@ -349,6 +349,7 @@ export namespace Core {
     function getState(): State;
     function setState(state: State): void;
     function saveScreenshot(name?: string): void;
+    function saveScreenshotAs(filename: string): void;
     function displayMessage(message: string, time_in_ms: number): void;
     function doFrameStep(): void;
 }

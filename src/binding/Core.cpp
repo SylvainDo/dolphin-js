@@ -24,6 +24,10 @@ Napi::Object Core_exports(Napi::Env env, Napi::Object exports) {
         else ICore->saveScreenShot2(asStrUtf8(info[0]).c_str());
         return info.Env().Undefined();
     }));
+    exports.Set("saveScreenshotAs", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
+        ICore->saveScreenShotAs(asStrUtf8(info[0]).c_str());
+        return info.Env().Undefined();
+    }));
     exports.Set("displayMessage", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         ICore->displayMessage(asStrUtf8(info[0]).c_str(), asS32(info[1]));
         return info.Env().Undefined();
