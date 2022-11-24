@@ -1,4 +1,5 @@
 #include "../dol.hpp"
+#include "../util.hpp"
 #include "../valueConverter.hpp"
 using namespace valueConverter;
 
@@ -318,6 +319,14 @@ Napi::Object Memory_exports(Napi::Env env, Napi::Object exports) {
     }));
     exports.Set("writePtrBitsBufferU8", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return writeBitsBufferU8(readPtrAddOffset(info), info[2].As<Napi::Uint8Array>());
+    }));
+    exports.Set("readCStr", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
+        return fromStrUtf8(info.Env(), util::copyString(
+                IMemory->getString(asU32(info[0]), asSizeOr(info[1], 0))));
+    }));
+    exports.Set("readPtrCStr", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
+        return fromStrUtf8(info.Env(), util::copyString(
+                IMemory->getString(readPtrAddOffset(info), asSizeOr(info[2], 0))));
     }));
     return exports;
 }

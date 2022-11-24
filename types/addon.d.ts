@@ -436,6 +436,8 @@ export namespace Memory {
     function writePtrBitU8(address: number, offset: number, bit_offset: number, set: number | boolean): void;
     function writePtrBitsU8(address: number, offset: number, data: Uint8Array): void;
     function writePtrBitsBufferU8(address: number, offset: number, data: Uint8Array): void;
+    function readCStr(address: number, size?: number): string;
+    function readPtrCStr(address: number, offset: number, size?: number): string;
 }
 
 export namespace Pad {
