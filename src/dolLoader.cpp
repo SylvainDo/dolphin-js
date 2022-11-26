@@ -6,8 +6,15 @@
 #include <sstream>
 #include <stdexcept>
 
+#ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#else
+#include <dlfcn.h>
+#define HMODULE void*
+#define GetProcAddress dlsym
+#define FreeLibrary dlclose
+#endif
 
 dol_AddressSpace_Accessors* IAddressSpace_Accessors;
 dol_Config* IConfig;
@@ -31,6 +38,7 @@ static struct Loader {
     HMODULE _lib;
 
     void load(const std::string& libraryPath, const std::string& libraryName) {
+#ifdef _WIN32
         if (!SetDllDirectory(util::s2ws(libraryPath).c_str())) {
             std::ostringstream oss;
             oss << "couldn't set dll directory (0x" << std::hex << GetLastError() << ')';
@@ -44,6 +52,12 @@ static struct Loader {
             oss << "couldn't load library (0x" << std::hex << GetLastError() << ')';
             throw std::runtime_error(oss.str());
         }
+#else
+        _lib = dlopen((std::filesystem::path(libraryPath) /
+                       std::filesystem::path(libraryName)).string().c_str(), RTLD_LAZY);
+        if (!_lib)
+            throw std::runtime_error(std::string("couldn't load library: ") + dlerror());
+#endif
 
         const auto _setMalloc = (dol_setMalloc_t)GetProcAddress(_lib, "dol_setMalloc");
         const auto _setCalloc = (dol_setCalloc_t)GetProcAddress(_lib, "dol_setCalloc");

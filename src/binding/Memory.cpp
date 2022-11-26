@@ -7,9 +7,15 @@ using namespace valueConverter;
 #include <bitset>
 #include <vector>
 
+#ifdef _WIN32
 #define bswap16 _byteswap_ushort
 #define bswap32 _byteswap_ulong
 #define bswap64 _byteswap_uint64
+#else
+#define bswap16 __builtin_bswap16
+#define bswap32 __builtin_bswap32
+#define bswap64 __builtin_bswap64
+#endif
 
 static Napi::Value readBufferU8(Napi::Env env, uint32_t address, uint32_t size) {
     std::vector<uint8_t> buf(size);

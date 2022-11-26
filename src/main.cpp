@@ -11,7 +11,11 @@ static Napi::Object initModule(Napi::Env env, Napi::Object exports) {
     dolphinNs.Set("loadLibrary", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         const auto _info = valueAsObject(info[0]);
         const auto libraryPath = asStrUtf8(_info.Get("libraryPath"));
+#ifdef _WIN32
         const auto libraryName = asStrUtf8Or(_info.Get("libraryName"), "Dolphin.dll");
+#else
+        const auto libraryName = asStrUtf8Or(_info.Get("libraryName"), "libdolphin-emu.so");
+#endif
 
         try {
             dolLoad(libraryPath, libraryName);
