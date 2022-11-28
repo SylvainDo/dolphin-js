@@ -341,6 +341,7 @@ export namespace UICommon {
         new(path: string): GameFile;
     };
 
+    function createDirectories(userDirectoryPath: string): void;
     function formatSize(bytes: number | bigint, decimals: number): string;
 }
 
