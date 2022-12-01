@@ -12,6 +12,7 @@ set(SRC
     src/binding/Core.cpp
     src/binding/Gui_Application.cpp
     src/binding/Gui_MainWindow.cpp
+    src/binding/Gui_Q_CommonDialogs.cpp
     src/binding/Gui_Settings.cpp
     src/binding/JitInterface.cpp
     src/binding/Memory.cpp
@@ -25,6 +26,8 @@ set(SRC
     src/dol.hpp
     src/dolLoader.cpp
     src/main.cpp
+    src/pointerWrap.cpp
+    src/pointerWrap.hpp
     src/util.cpp
     src/util.hpp
     src/valueConverter.hpp

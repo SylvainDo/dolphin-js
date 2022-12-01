@@ -33,6 +33,7 @@ export namespace Gui {
         function setResetCallback(callback: () => void): void;
         function setEmulationStateChangedCallback(callback: (state: Core.State) => void): void;
         function close(): void;
+        function asWidget(): Q.Widget;
     }
 
     namespace Settings {
@@ -113,6 +114,94 @@ export namespace Gui {
         function getFallbackRegion(): Enums.DiscIO.Region;
         function setFallbackRegion(region: Enums.DiscIO.Region): void;
     }
+
+    namespace Q {
+        interface Widget {
+        }
+
+        namespace CommonDialogs {
+            const enum StandardButtons {
+                NoButton = 0x00000000,
+                Ok = 0x00000400,
+                Save = 0x00000800,
+                SaveAll = 0x00001000,
+                Open = 0x00002000,
+                Yes = 0x00004000,
+                YesToAll = 0x00008000,
+                No = 0x00010000,
+                NoToAll = 0x00020000,
+                Abort = 0x00040000,
+                Retry = 0x00080000,
+                Ignore = 0x00100000,
+                Close = 0x00200000,
+                Cancel = 0x00400000,
+                Discard = 0x00800000,
+                Help = 0x01000000,
+                Apply = 0x02000000,
+                Reset = 0x04000000,
+                RestoreDefaults = 0x08000000
+            }
+
+            function about(parent: Widget | undefined, title: string, text: string): void;
+            function critical(parent: Widget | undefined, title: string, text: string, buttons?: StandardButtons,
+                              defaultButton?: StandardButtons): StandardButtons;
+            function information(parent: Widget | undefined, title: string, text: string, buttons?: StandardButtons,
+                                 defaultButton?: StandardButtons): StandardButtons;
+            function question(parent: Widget | undefined, title: string, text: string, buttons?: StandardButtons,
+                              defaultButton?: StandardButtons): StandardButtons;
+            function warning(parent: Widget | undefined, title: string, text: string, buttons?: StandardButtons,
+                             defaultButton?: StandardButtons): StandardButtons;
+
+            const enum ColorDialogOptions {
+                ShowAlphaChannel = 0x00000001,
+                NoButtons = 0x00000002
+            }
+
+            interface Color {
+                r: number;
+                g: number;
+                b: number;
+                a: number;
+            }
+
+            function getColor(parent?: Widget, title?: string, initial?: Color, options?: ColorDialogOptions): Color;
+
+            const enum LineEditEchoMode {
+                Normal,
+                NoEcho,
+                Password,
+                PasswordEchoOnEdit
+            }
+
+            function getDouble(parent: Widget | undefined, title: string, label: string, value?: number,
+                               minValue?: number, maxValue?: number, decimals?: number,
+                               step?: number): [number, boolean];
+            function getInt(parent: Widget | undefined, title: string, label: string, value?: number, minValue?: number,
+                            maxValue?: number, step?: number): [number, boolean];
+            function getItem(parent: Widget | undefined, title: string, label: string, items: string[],
+                             current?: number, editable?: boolean): string;
+            function getMultiLineText(parent: Widget | undefined, title: string, label: string, text?: string): string;
+            function getText(parent: Widget | undefined, title: string, label: string, mode?: LineEditEchoMode,
+                             text?: string): string;
+
+            const enum FileDialogOptions {
+                ShowDirsOnly = 0x00000001,
+                DontResolveSymlinks = 0x00000002,
+                DontConfirmOverwrite = 0x00000004,
+                ReadOnly = 0x00000010,
+                HideNameFilterDetails = 0x00000020
+            }
+
+            function getExistingDirectory(parent?: Widget, caption?: string, dir?: string,
+                                          options?: FileDialogOptions): string;
+            function getOpenFileName(parent?: Widget, caption?: string, dir?: string, filter?: string,
+                                     options?: FileDialogOptions): [string, string];
+            function getOpenFileNames(parent?: Widget, caption?: string, dir?: string, filter?: string,
+                                      options?: FileDialogOptions): [string[], string];
+            function getSaveFileName(parent?: Widget, caption?: string, dir?: string, filter?: string,
+                                     options?: FileDialogOptions): [string, string];
+        }
+    }
 }
 
 export namespace AddressSpace {
@@ -128,7 +217,8 @@ export namespace AddressSpace {
     function isValidAddress(address_space: Type, address: number): boolean;
     function get(address_space: Type): ArrayBuffer;
     function slice(address_space: Type, start: number, length?: number): ArrayBuffer;
-    function search(address_space: Type, haystack_offset: number, needle: Uint8Array, forward?: boolean): number | undefined;
+    function search(address_space: Type, haystack_offset: number, needle: Uint8Array,
+                    forward?: boolean): number | undefined;
 }
 
 export namespace Config {

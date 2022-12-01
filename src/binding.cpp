@@ -5,6 +5,7 @@ Napi::Object Config_exports(Napi::Env env, Napi::Object exports);
 Napi::Object Core_exports(Napi::Env env, Napi::Object exports);
 Napi::Object Gui_Application_exports(Napi::Env env, Napi::Object exports);
 Napi::Object Gui_MainWindow_exports(Napi::Env env, Napi::Object exports);
+Napi::Object Gui_Q_CommonDialogs_exports(Napi::Env env, Napi::Object exports);
 Napi::Object Gui_Settings_exports(Napi::Env env, Napi::Object exports);
 Napi::Object JitInterface_exports(Napi::Env env, Napi::Object exports);
 Napi::Object Memory_exports(Napi::Env env, Napi::Object exports);
@@ -18,6 +19,9 @@ Napi::Object binding_exports(Napi::Env env, Napi::Object exports) {
     guiNs.Set("Application", Gui_Application_exports(env, Napi::Object::New(env)));
     guiNs.Set("MainWindow", Gui_MainWindow_exports(env, Napi::Object::New(env)));
     guiNs.Set("Settings", Gui_Settings_exports(env, Napi::Object::New(env)));
+    auto guiQNs = Napi::Object::New(env);
+    guiQNs.Set("CommonDialogs", Gui_Q_CommonDialogs_exports(env, Napi::Object::New(env)));
+    guiNs.Set("Q", guiQNs);
     exports.Set("Gui", guiNs);
     exports.Set("AddressSpace", AddressSpace_exports(env, Napi::Object::New(env)));
     exports.Set("Config", Config_exports(env, Napi::Object::New(env)));

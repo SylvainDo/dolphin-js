@@ -1,6 +1,7 @@
 #include "../dol.hpp"
 #include "../valueConverter.hpp"
 using namespace valueConverter;
+#include "../pointerWrap.hpp"
 
 namespace ResetCallback {
 
@@ -52,6 +53,9 @@ Napi::Object Gui_MainWindow_exports(Napi::Env env, Napi::Object exports) {
     exports.Set("close", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         IGui_MainWindow->close();
         return info.Env().Undefined();
+    }));
+    exports.Set("asWidget", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
+        return PointerWrap::from(IGui_MainWindow->asWidget());
     }));
     return exports;
 }

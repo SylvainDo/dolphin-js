@@ -9,6 +9,7 @@ extern dol_DolphinAnalytics* IDolphinAnalytics;
 extern dol_Gui_Application* IGui_Application;
 extern dol_Gui_Host* IGui_Host;
 extern dol_Gui_MainWindow* IGui_MainWindow;
+extern dol_Gui_Q_CommonDialogs* IGui_Q_CommonDialogs;
 extern dol_Gui_Resources* IGui_Resources;
 extern dol_Gui_Settings* IGui_Settings;
 extern dol_Gui_Translation* IGui_Translation;

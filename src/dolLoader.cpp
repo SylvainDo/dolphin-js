@@ -23,6 +23,7 @@ dol_DolphinAnalytics* IDolphinAnalytics;
 dol_Gui_Application* IGui_Application;
 dol_Gui_Host* IGui_Host;
 dol_Gui_MainWindow* IGui_MainWindow;
+dol_Gui_Q_CommonDialogs* IGui_Q_CommonDialogs;
 dol_Gui_Resources* IGui_Resources;
 dol_Gui_Settings* IGui_Settings;
 dol_Gui_Translation* IGui_Translation;
@@ -81,6 +82,7 @@ static struct Loader {
         LoadInterface(Gui_Application)
         LoadInterface(Gui_Host)
         LoadInterface(Gui_MainWindow)
+        LoadInterface(Gui_Q_CommonDialogs)
         LoadInterface(Gui_Resources)
         LoadInterface(Gui_Settings)
         LoadInterface(Gui_Translation)
@@ -102,6 +104,7 @@ static struct Loader {
         free(IGui_Application);
         free(IGui_Host);
         free(IGui_MainWindow);
+        free(IGui_Q_CommonDialogs);
         free(IGui_Resources);
         free(IGui_Settings);
         free(IGui_Translation);

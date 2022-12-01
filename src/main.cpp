@@ -2,11 +2,13 @@
 #include "util.hpp"
 #include "valueConverter.hpp"
 using namespace valueConverter;
+#include "pointerWrap.hpp"
 
 void dolLoad(const std::string& libraryPath, const std::string& libraryName);
 Napi::Object binding_exports(Napi::Env env, Napi::Object exports);
 
 static Napi::Object initModule(Napi::Env env, Napi::Object exports) {
+    PointerWrap::initialize(env, exports);
     auto dolphinNs = Napi::Object::New(env);
     dolphinNs.Set("loadLibrary", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         const auto _info = valueAsObject(info[0]);

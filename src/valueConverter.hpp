@@ -159,6 +159,9 @@ inline std::string asStrUtf8Or(const Napi::Value& value, const std::string& defa
     return value.IsUndefined() ? defaultValue : asStrUtf8(value);
 }
 
+#define asCStrUtf8(value) asStrUtf8(value).c_str()
+#define asCStrUtf8Or(value, defaultValue) asStrUtf8Or(value, defaultValue).c_str()
+
 inline std::u16string asStrUtf16(const Napi::Value& value) {
     return valueAsString(value).Utf16Value();
 }
