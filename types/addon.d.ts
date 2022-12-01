@@ -32,6 +32,7 @@ export namespace Gui {
         function startGame(path: string): void;
         function setResetCallback(callback: () => void): void;
         function setEmulationStateChangedCallback(callback: (state: Core.State) => void): void;
+        function close(): void;
     }
 
     namespace Settings {

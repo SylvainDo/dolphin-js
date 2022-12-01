@@ -49,5 +49,9 @@ Napi::Object Gui_MainWindow_exports(Napi::Env env, Napi::Object exports) {
         IGui_MainWindow->setEmulationStateChangedCallback(EmulationStateChanged::callback, nullptr);
         return info.Env().Undefined();
     }));
+    exports.Set("close", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
+        IGui_MainWindow->close();
+        return info.Env().Undefined();
+    }));
     return exports;
 }
