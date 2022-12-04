@@ -34,6 +34,8 @@ export namespace Gui {
         function setEmulationStateChangedCallback(callback: (state: Core.State) => void): void;
         function close(): void;
         function asWidget(): Q.Widget;
+        function getMenuBar(): Q.MenuBar;
+        function findMenu(title: string): Q.Menu | undefined;
     }
 
     namespace Settings {
@@ -200,6 +202,34 @@ export namespace Gui {
                                       options?: FileDialogOptions): [string[], string];
             function getSaveFileName(parent?: Widget, caption?: string, dir?: string, filter?: string,
                                      options?: FileDialogOptions): [string, string];
+        }
+
+        interface MenuBar {
+            addMenu(title: string): Menu;
+        }
+
+        interface Menu {
+            addSeparator(): Action;
+            addMenu(title: string): Menu;
+            addMenu(iconFileName: string, title: string): Menu;
+            addAction(text: string): Action;
+            addAction(iconFileName: string, text: string): Action;
+            enabled: boolean;
+            visible: boolean;
+            setIcon(iconFileName: string): void;
+            setTitle(title: string): void;
+        }
+
+        interface Action {
+            setToggledCallback(callback: (checked: boolean) => void): void;
+            setTriggeredCallback(callback: (checked: boolean) => void): void;
+            enabled: boolean;
+            visible: boolean;
+            checkable: boolean;
+            checked: boolean;
+            setIcon(iconFileName: string): void;
+            setText(text: string): void;
+            setShortcut(shortcut: string): void;
         }
     }
 }

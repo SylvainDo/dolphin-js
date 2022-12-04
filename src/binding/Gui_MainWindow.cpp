@@ -2,6 +2,8 @@
 #include "../valueConverter.hpp"
 using namespace valueConverter;
 #include "../pointerWrap.hpp"
+#include "Gui_Q_Menu.hpp"
+#include "Gui_Q_MenuBar.hpp"
 
 namespace ResetCallback {
 
@@ -56,6 +58,13 @@ Napi::Object Gui_MainWindow_exports(Napi::Env env, Napi::Object exports) {
     }));
     exports.Set("asWidget", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return PointerWrap::from(IGui_MainWindow->asWidget());
+    }));
+    exports.Set("getMenuBar", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
+        return Gui_Q_MenuBar::from(IGui_MainWindow->getMenuBar());
+    }));
+    exports.Set("findMenu", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
+        const auto menu = IGui_MainWindow->findMenu(asCStrUtf8(info[0]));
+        return menu ? Gui_Q_Menu::from(menu) : info.Env().Undefined();
     }));
     return exports;
 }

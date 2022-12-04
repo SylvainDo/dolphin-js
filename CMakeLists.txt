@@ -12,7 +12,14 @@ set(SRC
     src/binding/Core.cpp
     src/binding/Gui_Application.cpp
     src/binding/Gui_MainWindow.cpp
+    src/binding/Gui_Q_Action.cpp
+    src/binding/Gui_Q_Action.hpp
     src/binding/Gui_Q_CommonDialogs.cpp
+    src/binding/Gui_Q_Menu.cpp
+    src/binding/Gui_Q_Menu.hpp
+    src/binding/Gui_Q_MenuBar.cpp
+    src/binding/Gui_Q_MenuBar.hpp
+    src/binding/Gui_Q_MenuEtc.cpp
     src/binding/Gui_Settings.cpp
     src/binding/JitInterface.cpp
     src/binding/Memory.cpp
