@@ -48,20 +48,20 @@ static Napi::Value readBitsBufferU8(Napi::Env env, uint32_t address, uint32_t si
 
 static void writeBufferU8(uint32_t address, Napi::Uint8Array data) {
     for (uint32_t i{}; i < data.ElementLength(); ++i)
-        IMemory->writeU8(address + i, asU8(data.Get(i)));
+        IMemory->writeU8(asU8(data.Get(i)), address + i);
 }
 
 static void writeBitU8(uint32_t address, uint32_t bit_offset, bool set) {
     std::bitset<8> bitset(IMemory->readU8(address));
     bitset.set(7 - bit_offset, set);
-    IMemory->writeU8(address, static_cast<uint8_t>(bitset.to_ulong()));
+    IMemory->writeU8(static_cast<uint8_t>(bitset.to_ulong()), address);
 }
 
 static void writeBitsU8(uint32_t address, Napi::Uint8Array data) {
     std::bitset<8> bitset;
     for (uint32_t j{}; j < 8; ++j)
         bitset.set(7 - j, toBool(data.Get(j)));
-    IMemory->writeU8(address, static_cast<uint8_t>(bitset.to_ulong()));
+    IMemory->writeU8(static_cast<uint8_t>(bitset.to_ulong()), address);
 }
 
 static void writeBitsBufferU8(uint32_t address, Napi::Uint8Array data) {
@@ -69,7 +69,7 @@ static void writeBitsBufferU8(uint32_t address, Napi::Uint8Array data) {
         std::bitset<8> bitset;
         for (uint32_t j{}; j < 8; ++j)
             bitset.set(7 - j, toBool(data.Get(i * 8 + j)));
-        IMemory->writeU8(address + i, static_cast<uint8_t>(bitset.to_ulong()));
+        IMemory->writeU8(static_cast<uint8_t>(bitset.to_ulong()), address + i);
     }
 }
 
@@ -328,11 +328,11 @@ Napi::Object Memory_exports(Napi::Env env, Napi::Object exports) {
     }));
     exports.Set("readCStr", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return fromStrUtf8(info.Env(), util::copyString(
-                IMemory->getString(asU32(info[0]), asSizeOr(info[1], 0))));
+            IMemory->getString(asU32(info[0]), asSizeOr(info[1], 0))));
     }));
     exports.Set("readPtrCStr", Napi::Function::New(env, [](const Napi::CallbackInfo& info) {
         return fromStrUtf8(info.Env(), util::copyString(
-                IMemory->getString(readPtrAddOffset(info), asSizeOr(info[2], 0))));
+            IMemory->getString(readPtrAddOffset(info), asSizeOr(info[2], 0))));
     }));
     return exports;
 }
